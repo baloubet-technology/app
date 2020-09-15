@@ -50,7 +50,10 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/apollo"],
+  modules: [
+    "@nuxtjs/apollo",
+    '@nuxtjs/cloudinary',
+  ],
 
   apollo: {
     clientConfigs: {
@@ -58,6 +61,11 @@ export default {
         httpEndpoint: "https://api.baloubet.com/graphql",
       },
     },
+  },
+
+  cloudinary: {
+    cloudName: 'Baloubet',
+    useComponent: true,
   },
   /*
    ** Build configuration

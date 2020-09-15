@@ -60,8 +60,8 @@
           <div class="mt-5 flex-1 h-0 overflow-y-auto">
             <nav class="px-2">
               <div class="space-y-1">
-                <a
-                  href="/dashboard"
+                <router-link
+                  :to="{ path: '/dashboard'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -78,10 +78,10 @@
                     />
                   </svg>
                   Dashboard
-                </a>
+                </router-link>
 
-                <a
-                  href="/products"
+                <router-link
+                  :to="{ path: '/products'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -98,10 +98,10 @@
                     />
                   </svg>
                   Products
-                </a>
+                </router-link>
 
-                <a
-                  href="/orders"
+                <router-link
+                  :to="{ path: '/orders'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -118,10 +118,10 @@
                     />
                   </svg>
                   Orders
-                </a>
+                </router-link>
 
-                <a
-                  href="/transfers"
+                <router-link
+                  :to="{ path: '/transfers'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -138,10 +138,10 @@
                     />
                   </svg>
                   Transfers
-                </a>
+                </router-link>
 
-                <a
-                  href="/connects"
+                <router-link
+                  :to="{ path: '/connects'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -158,10 +158,10 @@
                     />
                   </svg>
                   Connects
-                </a>
+                </router-link>
 
-                <a
-                  href="/returns"
+                <router-link
+                  :to="{ path: '/returns'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -178,10 +178,10 @@
                     />
                   </svg>
                   Returns
-                </a>
+                </router-link>
 
-                <a
-                  href="/settings"
+                <router-link
+                  :to="{ path: '/settings'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -204,10 +204,10 @@
                     />
                   </svg>
                   Settings
-                </a>
+                </router-link>
 
-                <a
-                  href="/helps"
+                <router-link
+                  :to="{ path: '/helps'}"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -224,7 +224,7 @@
                     />
                   </svg>
                   Helps
-                </a>
+                </router-link>
               </div>
             </nav>
           </div>
@@ -386,9 +386,9 @@
           <!-- Navigation -->
           <nav class="px-3 mt-6">
             <div class="space-y-1">
-              <a
-                href="/dashboard"
-                class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-900 bg-gray-200 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
+              <router-link
+                :to="{ path: '/dashboard'}"
+                class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
               >
                 <svg
                   class="mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150"
@@ -404,10 +404,10 @@
                   />
                 </svg>
                 Dashboard
-              </a>
+              </router-link>
 
-              <a
-                href="/products"
+              <router-link
+                :to="{ path: '/products'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -424,10 +424,10 @@
                   />
                 </svg>
                 Products
-              </a>
+              </router-link>
 
-              <a
-                href="/orders"
+              <router-link
+                :to="{ path: '/orders'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -444,10 +444,10 @@
                   />
                 </svg>
                 Orders
-              </a>
+              </router-link>
 
-              <a
-                href="/transfers"
+              <router-link
+                :to="{ path: '/transfers'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -464,10 +464,10 @@
                   />
                 </svg>
                 Transfers
-              </a>
+              </router-link>
 
-              <a
-                href="/connects"
+              <router-link
+                :to="{ path: '/connects'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -484,10 +484,10 @@
                   />
                 </svg>
                 Connects
-              </a>
+              </router-link>
 
-              <a
-                href="/returns"
+              <router-link
+                :to="{ path: '/returns'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -504,10 +504,10 @@
                   />
                 </svg>
                 Returns
-              </a>
+              </router-link>
 
-              <a
-                href="/settings"
+              <router-link
+                :to="{ path: '/settings'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -530,10 +530,10 @@
                   />
                 </svg>
                 Settings
-              </a>
+              </router-link>
 
-              <a
-                href="/helps"
+              <router-link
+                :to="{ path: '/helps'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
               >
                 <svg
@@ -550,7 +550,7 @@
                   />
                 </svg>
                 Helps
-              </a>
+              </router-link>
             </div>
           </nav>
         </div>

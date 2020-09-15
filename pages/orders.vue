@@ -9,7 +9,7 @@
     >
       <div class="flex-1 min-w-0">
         <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-          Products
+          Orders
         </h1>
       </div>
       <div class="mt-4 flex sm:mt-0 sm:ml-4">
@@ -40,20 +40,33 @@
         </h2>
       </div>
       <ul class="mt-3 border-t border-gray-200 divide-y divide-gray-100">
-        <li>
+        <li v-for="order in allOrders">
           <a
-            href="#"
+            @click="idOrder(order.id); viewOrderPopup = !viewOrderPopup;"
             class="flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
           >
-            <div class="flex items-center truncate space-x-3">
+            <div v-if="order.status === 'Livré'" class="flex items-center truncate space-x-3">
               <div
-                class="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-pink-600"
+                class="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-green-600"
               ></div>
               <p class="font-medium truncate text-sm leading-6">
-                GraphQL API
-                <span class="truncate font-normal text-gray-500"
-                  >in Engineering</span
-                >
+                {{ order.status }}
+              </p>
+            </div>
+            <div v-else-if="order.status === 'En attente'" class="flex items-center truncate space-x-3">
+              <div
+                class="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-red-600"
+              ></div>
+              <p class="font-medium truncate text-sm leading-6">
+                {{ order.status }}
+              </p>
+            </div>
+            <div v-else="order.status" class="flex items-center truncate space-x-3">
+              <div
+                class="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-yellow-600"
+              ></div>
+              <p class="font-medium truncate text-sm leading-6">
+                {{ order.status }}
               </p>
             </div>
             <svg
@@ -84,17 +97,17 @@
               <th
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
               >
-                <span class="lg:pl-2">Project</span>
+                <span class="lg:pl-2">Status</span>
               </th>
               <th
                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
               >
-                Members
+                Product
               </th>
               <th
-                class="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
               >
-                Last updated
+                Create
               </th>
               <th
                 class="pr-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
@@ -106,49 +119,45 @@
               <td
                 class="px-6 py-3 max-w-0 w-full whitespace-no-wrap text-sm leading-5 font-medium text-gray-900"
               >
-                <div class="flex items-center space-x-3 lg:pl-2">
+                <div v-if="order.status === 'Livré'" class="flex items-center space-x-3 lg:pl-2">
                   <div
                     class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-green-600"
                   ></div>
-                  <a href="#" class="truncate hover:text-gray-600">
+                  <div class="truncate hover:text-gray-600">
                     <span>
                       {{ order.status }}
                     </span>
-                  </a>
+                  </div>
+                </div>
+                <div v-else-if="order.status === 'En attente'" class="flex items-center space-x-3 lg:pl-2">
+                  <div
+                    class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-red-600"
+                  ></div>
+                  <div class="truncate hover:text-gray-600">
+                    <span>
+                      {{ order.status }}
+                    </span>
+                  </div>
+                </div>
+                <div v-else="order.status" class="flex items-center space-x-3 lg:pl-2">
+                  <div
+                    class="flex-shrink-0 w-2.5 h-2.5 rounded-full bg-yellow-600"
+                  ></div>
+                  <div class="truncate hover:text-gray-600">
+                    <span>
+                      {{ order.status }}
+                    </span>
+                  </div>
                 </div>
               </td>
               <td class="px-6 py-3 text-sm leading-5 text-gray-500 font-medium">
-                <div class="flex items-center space-x-2">
-                  <div class="flex flex-shrink-0 -space-x-1">
-                    <img
-                      class="max-w-none h-6 w-6 rounded-full text-white shadow-solid"
-                      src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
 
-                    <img
-                      class="max-w-none h-6 w-6 rounded-full text-white shadow-solid"
-                      src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-
-                    <img
-                      class="max-w-none h-6 w-6 rounded-full text-white shadow-solid"
-                      src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
-
-                    <img
-                      class="max-w-none h-6 w-6 rounded-full text-white shadow-solid"
-                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+                  <div class="truncate hover:text-gray-600">
+                    <span>
+                      {{ order.variant.product.name }}
+                    </span>
                   </div>
 
-                  <span class="flex-shrink-0 text-xs leading-5 font-medium"
-                    >+8</span
-                  >
-                </div>
               </td>
               <td
                 class="hidden md:table-cell px-6 py-3 whitespace-no-wrap text-sm leading-5 text-gray-500 text-right"
@@ -158,6 +167,7 @@
               <td class="pr-6">
                 <div class="relative flex justify-end items-center">
                   <button
+                    @click="idOrder(order.id); viewOrderPopup = !viewOrderPopup;"
                     id="project-options-menu-0"
                     aria-has-popup="true"
                     type="button"
@@ -181,10 +191,14 @@
         </table>
       </div>
     </div>
+    <div v-if="viewOrderPopup">
+      <Order :id="id" @changeStatus="viewOrderPopup = false" />
+    </div>
   </main>
 </template>
 
 <script>
+import Order from '@/components/order'
 import gql from "graphql-tag";
 
 export default {
@@ -192,9 +206,16 @@ export default {
   layout: "navigation",
   data() {
     return {
+      id: null,
       allOrders: null,
+      viewOrderPopup: false,
       errors: [],
     };
+  },
+  methods: {
+    idOrder(id) {
+      this.id = id
+    },
   },
   apollo: {
     allOrders: {
