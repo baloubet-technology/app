@@ -58,7 +58,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "https://api.baloubet.com/graphql",
+        httpEndpoint: process.env.HTTP_ENDPOINT,
       },
     },
   },

@@ -62,6 +62,7 @@
               <div class="space-y-1">
                 <router-link
                   :to="{ path: '/dashboard'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -82,6 +83,7 @@
 
                 <router-link
                   :to="{ path: '/products'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -102,6 +104,7 @@
 
                 <router-link
                   :to="{ path: '/orders'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -122,6 +125,7 @@
 
                 <router-link
                   :to="{ path: '/transfers'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -142,6 +146,7 @@
 
                 <router-link
                   :to="{ path: '/connects'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -162,6 +167,7 @@
 
                 <router-link
                   :to="{ path: '/returns'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -182,6 +188,7 @@
 
                 <router-link
                   :to="{ path: '/settings'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
@@ -208,6 +215,7 @@
 
                 <router-link
                   :to="{ path: '/helps'}"
+                  @click="openDropdownMobile = !openDropdownMobile"
                   class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
                 >
                   <svg
