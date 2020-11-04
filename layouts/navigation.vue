@@ -57,7 +57,7 @@
               alt="Workflow"
             />
           </div>
-          <div class="mt-5 flex-1 h-0 overflow-y-auto">
+          <div class="mt-5 flex-1 h-0 overflow-y-auto" v-click-outside="externalClick">
             <nav class="px-2">
               <div class="space-y-1">
                 <router-link
@@ -259,7 +259,7 @@
           <!-- User account dropdown -->
           <div class="px-3 mt-6 relative inline-block text-left">
             <!-- Dropdown menu toggle, controlling the show/hide state of dropdown menu. -->
-            <div>
+            <div v-click-outside="externalClick">
               <button
                 type="button"
                 class="group w-full rounded-md px-3.5 py-2 text-sm leading-5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-500 focus:outline-none focus:bg-gray-200 focus:border-blue-300 active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
@@ -710,6 +710,7 @@
 
 <script>
 import gql from "graphql-tag";
+import vClickOutside from 'v-click-outside'
 
 export default {
   data() {
@@ -718,7 +719,14 @@ export default {
       openDropdownMobile: false,
     };
   },
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   methods: {
+    externalClick (event) {
+      this.isOpen = false
+      this.openDropdownMobile = false
+    },
     signOut() {
       this.$apollo
         .mutate({
