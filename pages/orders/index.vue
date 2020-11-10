@@ -171,9 +171,7 @@
                 March 17, 2020
               </td>
               <td class="pr-6">
-                <div
-                  class="relative flex justify-end items-center"
-                >
+                <div class="relative flex justify-end items-center">
                   <button
                     @click="idOrder(order.id); viewOrderPopup = !viewOrderPopup;"
                     id="project-options-menu-0"
@@ -199,19 +197,14 @@
         </table>
       </div>
     </div>
-    <div
-      v-if="viewOrderPopup"
-    >
-      <Order
-        :id="id"
-        @changeStatus="viewOrderPopup = false"
-      />
+    <div v-if="viewOrderPopup">
+      <Order :id="id" @changeStatus="viewOrderPopup = false" />
     </div>
   </main>
 </template>
 
 <script>
-import Order from '@/components/orders/index'
+import Order from '@/components/order'
 import gql from "graphql-tag";
 
 export default {

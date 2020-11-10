@@ -38,12 +38,16 @@
           </div>
 
         <span class="order-0 sm:order-1 sm:ml-3 shadow-sm rounded-md">
-          <button
-            type="button"
-            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
+          <nuxt-link
+            :to="{ path: '/products/create'}"
           >
-            Create
-          </button>
+            <button
+              type="button"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
+            >
+              Create
+            </button>
+          </nuxt-link>
         </span>
       </div>
     </div>
@@ -53,13 +57,16 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow">
-            <div class="flex-1 flex flex-col p-8" :style="{ backgroundImage: `url(${'https://res.cloudinary.com/baloubet/image/upload/v1594141696/sku_HbXLvkzmGIBCH5.png'})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
-            </div>
+            <img class="p-6" src="https://res.cloudinary.com/baloubet/image/upload/v1594141696/sku_HbXLvkzmGIBCH5.png" alt="">
             <div class="border-t border-gray-200">
               <div class="-mt-px flex">
                 <div class="w-0 flex-1 flex">
                   <nuxt-link :to="{ name: 'products-id', params: { id: 1 }}" class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-                    <span class="ml-3">View</span>
+                    <div>
+                      <p class="text-sm leading-5 font-medium text-gray-500">Gucci</p>
+                      <p class="mt-1 text-sm leading-5 text-gray-900">Original Gucci printed T-shirt</p>
+                      <p class="mt-4 text-gray-900">1590$</p>
+                    </div>
                   </nuxt-link>
                 </div>
               </div>

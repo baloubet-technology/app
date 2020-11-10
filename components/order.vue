@@ -42,7 +42,7 @@
                         Id
                       </label>
                       <div class="relative rounded-md shadow-sm">
-                        {{ orderOrganization.id }}
+                        {{ orderId.id }}
                       </div>
                     </div>
                     <div class="space-y-1">
@@ -50,11 +50,11 @@
                         Email
                       </label>
                       <div class="relative rounded-md shadow-sm">
-                        {{ orderOrganization.price }}
+                        {{ orderId.price }}
                       </div>
                     </div>
                     <cld-image
-                      :public-id="orderOrganization.sku"
+                      :public-id="orderId.sku"
                     />
                   </div>
                 </div>
@@ -72,7 +72,7 @@
               </span>
               <span class="inline-flex rounded-md shadow-sm">
                 <a
-                  :href="orderOrganization.orderUrl"
+                  :href="orderId.orderUrl"
                   target="_blank"
                   type="button"
                   class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
@@ -82,7 +82,7 @@
               </span>
               <span class="inline-flex rounded-md shadow-sm">
                 <a
-                  :href="orderOrganization.shippingLabel"
+                  :href="orderId.shippingLabel"
                   target="_blank"
                   type="submit"
                   class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
@@ -105,7 +105,7 @@ export default {
   props: ['id'],
   data() {
     return {
-      orderOrganization: null,
+      orderId: null,
       errors: [],
     }
   },
@@ -115,10 +115,10 @@ export default {
     },
   },
   apollo: {
-    orderOrganization: {
+    orderId: {
       query: gql`
         query($id: ID!) {
-          orderOrganization(id: $id) {
+          orderId(id: $id) {
             id
             price
             shippingLabel
@@ -126,7 +126,7 @@ export default {
             orderUrl
             variant {
               id
-              urlImage
+              pictureUrl
               product {
                 name
               }

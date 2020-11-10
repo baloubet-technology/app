@@ -19,37 +19,49 @@
         </div>
         <div class="hidden sm:block">
           <nav class="flex">
-            <a href="#" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200">
+            <nuxt-link :to="{ name: 'products-id', params: { id: this.$route.params.id }}" class="px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200">
               Infos
-            </a>
+            </nuxt-link>
             <a href="#" class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-800 bg-gray-200 focus:outline-none focus:bg-gray-300" aria-current="page">
               Variants
-            </a>
-            <a href="#" class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200">
-              All Orders
-            </a>
-            <a href="#" class="ml-4 px-3 py-2 font-medium text-sm leading-5 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:text-gray-800 focus:bg-gray-200">
-              Billing
             </a>
           </nav>
         </div>
       </div>
       <div class="mt-4 flex sm:mt-0 sm:ml-4">
-        <span class="order-1 ml-3 shadow-sm rounded-md sm:order-0 sm:ml-0">
-          <button
-            type="button"
-            class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out"
+        <div class="relative rounded-md shadow-sm">
+          <div
+            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
           >
-            Share
-          </button>
-        </span>
+            <svg
+              class="mr-3 h-4 w-4 text-gray-400"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <input
+            id="search"
+            class="form-input block w-full pl-9 sm:text-sm sm:leading-5"
+            placeholder="Search"
+          />
+        </div>
         <span class="order-0 sm:order-1 sm:ml-3 shadow-sm rounded-md">
-          <button
-            type="button"
-            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
+          <nuxt-link
+            :to="{ name: 'products-id-variants-create', params: { id: this.$route.params.id }}"
           >
-            Create
-          </button>
+            <button
+              type="button"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
+            >
+              Create
+            </button>
+          </nuxt-link>
         </span>
       </div>
     </div>
@@ -141,7 +153,7 @@
                       fill="currentColor"
                     >
                       <path
-                        d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                       />
                     </svg>
                   </button>
