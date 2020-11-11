@@ -12,7 +12,7 @@
             From: "translate-x-0"
             To: "translate-x-full"
         -->
-        <form ref="form" class="w-screen max-w-2xl" @submit.prevent="createVatiant" v-click-outside="externalClick">
+        <form ref="form" class="w-screen max-w-2xl" @submit.prevent="createProduct" v-click-outside="externalClick">
           <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
             <div class="flex-1">
               <!-- Header -->
@@ -43,58 +43,78 @@
 
               <!-- Divider container -->
               <div class="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-gray-200">
-                <!-- Variant quantity -->
+                <!-- Product name -->
                 <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
                   <div>
-                    <label for="variant_quantity" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
-                      Quantity
+                    <label for="product_name" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                      Name
                     </label>
                   </div>
                   <div class="sm:col-span-2">
                     <div class="rounded-md shadow-sm">
-                      <input v-model.number="variant.quantity" id="variant_quantity" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <input v-model="product.name" id="product_name" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
                     </div>
                   </div>
                 </div>
 
-                <!-- Variant price -->
+                <!-- Product description -->
                 <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
                   <div>
-                    <label for="variant_price" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
-                      Price
+                    <label for="product_description" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                      Description
                     </label>
                   </div>
                   <div class="sm:col-span-2">
                     <div class="flex rounded-md shadow-sm">
-                      <input v-model.number="variant.price" id="variant_price" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <textarea v-model="product.description" id="product_description" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="" />
                     </div>
                   </div>
                 </div>
 
-                <!-- Variant size -->
+                <!-- Product brand -->
                 <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
                   <div>
-                    <label for="variant_size" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
-                      Size
+                    <label for="product_brand" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                      Brand
                     </label>
                   </div>
                   <div class="sm:col-span-2">
                     <div class="flex rounded-md shadow-sm">
-                      <input v-model="variant.size" id="variant_size" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <select v-model.number="product.brandId" id="location" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                        <option v-for="brand in allBrands" :key="brand.id" :value="brand.id" >{{ brand.name }}</option>
+                      </select>
                     </div>
                   </div>
                 </div>
 
-                <!-- Variant color -->
+                <!-- Product tag -->
                 <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
                   <div>
-                    <label for="variant_color" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
-                      Color
+                    <label for="product_tag" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                      Category
                     </label>
                   </div>
                   <div class="sm:col-span-2">
                     <div class="flex rounded-md shadow-sm">
-                      <input v-model="variant.color" id="variant_color" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <select v-model.number="product.tagId" id="country" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                        <option v-for="tag in allTags" :key="tag.id" :value="tag.id" >{{ tag.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Product package -->
+                <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                  <div>
+                    <label for="product_package" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                      Package
+                    </label>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <div class="flex rounded-md shadow-sm">
+                      <select v-model.number="product.packageId" id="location" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                        <option v-for="pack in allPackages" :key="pack.id" :value="pack.id" >{{ pack.name }}</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -134,7 +154,10 @@ import vClickOutside from 'v-click-outside';
 export default {
   data() {
     return {
-      variant: {},
+      product: {},
+      allBrands: [],
+      allTags: [],
+      allPackages: [],
       errors: [],
     }
   },
@@ -148,27 +171,27 @@ export default {
     changeStatus() {
       this.$emit('changeStatus')
     },
-    createVatiant() {
+    createProduct() {
       this.$apollo
         .mutate({
           mutation: gql`
-            mutation createVariant($quantity: Int!, $price: Float!, $size: String!, $color: String!, $productId: ID!) {
-              createVariant(input: { quantity: $quantity, price: $price, size: $size, color: $color, productId: $productId }) {
-                variant {
+            mutation createProduct($name: String!, $description: String!, $brandId: ID!, $tagId: ID!, $packageId: ID!) {
+              createProduct(input: { name: $name, description: $description, brandId: $brandId, tagId: $tagId, packageId: $packageId }) {
+                product {
                   id
-                  sku
-                  quantity
-                  price
+                  name
+                  description
+                  stripeProduct
                 }
               }
             }
           `,
           variables: {
-            quantity: this.variant.quantity,
-            price: this.variant.price,
-            size: this.variant.size,
-            color: this.variant.color,
-            productId: Number(this.$route.params.id)
+            name: this.product.name,
+            description: this.product.description,
+            brandId: this.product.brandId,
+            tagId: this.product.tagId,
+            packageId: this.product.packageId,
           },
         })
         .then((data) => {
@@ -181,5 +204,37 @@ export default {
         });
     },
   },
+  apollo: {
+    allBrands: {
+      query: gql`
+        query {
+          allBrands {
+            id
+            name
+          }
+        }
+      `
+    },
+    allTags: {
+      query: gql`
+        query {
+          allTags {
+            id
+            name
+          }
+        }
+      `
+    },
+    allPackages: {
+      query: gql`
+        query {
+          allPackages {
+            id
+            name
+          }
+        }
+      `
+    }
+  }
 }
 </script>

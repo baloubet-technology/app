@@ -31,6 +31,7 @@
       <div class="mt-4 flex sm:mt-0 sm:ml-4">
         <span class="order-0 sm:order-1 sm:ml-3 shadow-sm rounded-md">
           <button
+            @click="idProduct(productId.id); updateProductPopop = !updateProductPopop;"
             type="button"
             class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
           >
@@ -121,21 +122,39 @@
         </dl>
       </div>
     </div>
+    <div
+      v-if="updateProductPopop"
+    >
+      <UpdateProduct
+        :id="id"
+        @changeStatus="updateProductPopop = false"
+      />
+    </div>
   </main>
 </template>
 
 <script>
 import gql from "graphql-tag";
+import UpdateProduct from '@/components/products/update'
 
 export default {
   middleware: ["authenticated"],
   layout: "navigation",
+  components: {
+    UpdateProduct,
+  },
   data() {
     return {
       id: null,
       productId: null,
+      updateProductPopop: false,
       errors: [],
     };
+  },
+  methods: {
+    idProduct(id) {
+      this.id = id
+    },
   },
   apollo: {
     productId: {

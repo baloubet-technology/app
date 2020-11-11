@@ -52,16 +52,13 @@
           />
         </div>
         <span class="order-0 sm:order-1 sm:ml-3 shadow-sm rounded-md">
-          <nuxt-link
-            :to="{ name: 'products-id-variants-create', params: { id: this.$route.params.id }}"
+          <button
+            @click="createVariantPopup = !createVariantPopup;"
+            type="button"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
           >
-            <button
-              type="button"
-              class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-indigo-700 transition duration-150 ease-in-out"
-            >
-              Create
-            </button>
-          </nuxt-link>
+            Create
+          </button>
         </span>
       </div>
     </div>
@@ -143,6 +140,7 @@
                 <div class="relative flex justify-end items-center">
                   <button
                     id="project-options-menu-0"
+                    @click="idVariant(variant.id); updateVariantPopop = !updateVariantPopop;"
                     aria-has-popup="true"
                     type="button"
                     class="w-8 h-8 inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition ease-in-out duration-150"
@@ -164,21 +162,49 @@
         </table>
       </div>
     </div>
+    <div
+      v-if="createVariantPopup"
+    >
+      <CreateVariant
+        @changeStatus="createVariantPopup = false"
+      />
+    </div>
+    <div
+      v-if="updateVariantPopop"
+    >
+      <UpdateVariant
+        :id="id"
+        @changeStatus="updateVariantPopop = false"
+      />
+    </div>
   </main>
 </template>
 
 <script>
+import CreateVariant from '@/components/variants/create'
+import UpdateVariant from '@/components/variants/update'
 import gql from "graphql-tag";
 
 export default {
   middleware: ["authenticated"],
   layout: "navigation",
+  components: {
+    CreateVariant,
+    UpdateVariant,
+  },
   data() {
     return {
       id: null,
       productId: null,
+      createVariantPopup: false,
+      updateVariantPopop: false,
       errors: [],
     };
+  },
+  methods: {
+    idVariant(id) {
+      this.id = id
+    },
   },
   apollo: {
     productId: {

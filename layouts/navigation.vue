@@ -323,44 +323,23 @@
                     href="#"
                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                     role="menuitem"
-                    >View profile</a
                   >
+                    View profile
+                  </a>
                   <a
                     href="#"
                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                     role="menuitem"
-                    >Settings</a
                   >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                    role="menuitem"
-                    >Notifications</a
-                  >
-                </div>
-                <div class="border-t border-gray-100"></div>
-                <div class="py-1">
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                    role="menuitem"
-                    >Get desktop app</a
-                  >
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                    role="menuitem"
-                    >Support</a
-                  >
-                </div>
-                <div class="border-t border-gray-100"></div>
-                <div class="py-1">
+                    Settings
+                  </a>
                   <a
                     @click="signOut"
                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                     role="menuitem"
-                    >Logout</a
                   >
+                    Logout
+                  </a>
                 </div>
               </div>
             </div>
@@ -394,6 +373,7 @@
           <!-- Navigation -->
           <nav class="px-3 mt-6">
             <div class="space-y-1">
+              <!--
               <router-link
                 :to="{ path: '/dashboard'}"
                 class="group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none transition ease-in-out duration-150"
@@ -413,6 +393,7 @@
                 </svg>
                 Dashboard
               </router-link>
+              -->
 
               <router-link
                 :to="{ path: '/products'}"
@@ -474,6 +455,7 @@
                 Transfers
               </router-link>
 
+              <!--
               <router-link
                 :to="{ path: '/connects'}"
                 class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition ease-in-out duration-150"
@@ -493,6 +475,7 @@
                 </svg>
                 Connects
               </router-link>
+              -->
 
               <router-link
                 :to="{ path: '/returns'}"

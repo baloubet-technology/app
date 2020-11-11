@@ -12,7 +12,7 @@
             From: "translate-x-0"
             To: "translate-x-full"
         -->
-        <form ref="form" class="w-screen max-w-2xl" @submit.prevent="createVatiant" v-click-outside="externalClick">
+        <form ref="form" class="w-screen max-w-2xl" @submit.prevent="updateVariant" v-click-outside="externalClick">
           <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
             <div class="flex-1">
               <!-- Header -->
@@ -52,7 +52,7 @@
                   </div>
                   <div class="sm:col-span-2">
                     <div class="rounded-md shadow-sm">
-                      <input v-model.number="variant.quantity" id="variant_quantity" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <input v-model.number="variantId.quantity" id="variant_quantity" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
                   </div>
                   <div class="sm:col-span-2">
                     <div class="flex rounded-md shadow-sm">
-                      <input v-model.number="variant.price" id="variant_price" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <input v-model.number="variantId.price" id="variant_price" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@
                   </div>
                   <div class="sm:col-span-2">
                     <div class="flex rounded-md shadow-sm">
-                      <input v-model="variant.size" id="variant_size" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <input v-model="variantId.size" id="variant_size" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -94,7 +94,7 @@
                   </div>
                   <div class="sm:col-span-2">
                     <div class="flex rounded-md shadow-sm">
-                      <input v-model="variant.color" id="variant_color" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
+                      <input v-model="variantId.color" id="variant_color" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="">
                     </div>
                   </div>
                 </div>
@@ -115,7 +115,7 @@
                 </span>
                 <span class="inline-flex rounded-md shadow-sm">
                   <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                    Create
+                    Update
                   </button>
                 </span>
               </div>
@@ -132,9 +132,10 @@ import gql from "graphql-tag";
 import vClickOutside from 'v-click-outside';
 
 export default {
+  props: ['id'],
   data() {
     return {
-      variant: {},
+      variantId: {},
       errors: [],
     }
   },
@@ -148,12 +149,12 @@ export default {
     changeStatus() {
       this.$emit('changeStatus')
     },
-    createVatiant() {
+    updateVariant() {
       this.$apollo
         .mutate({
           mutation: gql`
-            mutation createVariant($quantity: Int!, $price: Float!, $size: String!, $color: String!, $productId: ID!) {
-              createVariant(input: { quantity: $quantity, price: $price, size: $size, color: $color, productId: $productId }) {
+            mutation updateVariant($quantity: Int!, $price: Float!, $size: String!, $color: String!, $id: ID!) {
+              updateVariant(input: { quantity: $quantity, price: $price, size: $size, color: $color, id: $id }) {
                 variant {
                   id
                   sku
@@ -164,11 +165,11 @@ export default {
             }
           `,
           variables: {
-            quantity: this.variant.quantity,
-            price: this.variant.price,
-            size: this.variant.size,
-            color: this.variant.color,
-            productId: Number(this.$route.params.id)
+            quantity: this.variantId.quantity,
+            price: this.variantId.price,
+            size: this.variantId.size,
+            color: this.variantId.color,
+            id: Number(this.$props.id)
           },
         })
         .then((data) => {
@@ -181,5 +182,23 @@ export default {
         });
     },
   },
+  apollo: {
+    variantId: {
+      query: gql`
+        query($id: ID!) {
+          variantId(id: $id) {
+            id
+            quantity
+            price
+            size
+            color
+          }
+        }
+      `,
+      variables() {
+        return { id: this.$props.id }
+      },
+    }
+  }
 }
 </script>
